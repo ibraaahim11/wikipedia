@@ -1,0 +1,32 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Edit Entry
+{% endblock %}
+
+{% block body %}
+    <h1>Edit entry:</h1>
+    <hr>
+    <form action="{% url 'edit-entry' title=title %}" method="post">
+        {% csrf_token %}
+
+        <div class= "col-sm-4 my-3">
+            <input class="form-control" id="disabledInput" type="text" value="{{title}}" disabled>
+        </div>
+        
+
+        <div class="form-floating mb-3 col-sm-6">
+            <textarea class="form-control" placeholder="Enter the content here." id="floatingTextarea2" style="height: 200px" name = "content">{{content}}</textarea>
+            <label for="floatingTextarea2">Content</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Save</button>
+    </div>
+
+    </form>
+
+
+    
+
+
+
+{% endblock %}

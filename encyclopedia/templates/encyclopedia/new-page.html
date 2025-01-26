@@ -1,0 +1,39 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    New Page
+{% endblock %}
+
+{% block body %}
+    <h1>Create a new entry</h1>
+    <hr>
+    <form action="{% url 'new-page'%}" method="post">
+        {% csrf_token %}
+        <div class="form-floating my-3 col-sm-4">
+            <input class="form-control" id="floatingInput" placeholder="title" name="title"
+            {%if entry_exists == True %}
+            value = {{title}}
+            {%endif%}
+            >
+            <label for="floatingInput">Title</label>
+        </div>
+
+        <div class="form-floating mb-3 col-sm-6">
+            <textarea class="form-control" placeholder="Enter the content here." id="floatingTextarea2" style="height: 200px" name = "content">{%if entry_exists == True %}{{written_content}}{%endif%}</textarea>
+            <label for="floatingTextarea2">Content</label>
+        </div>
+        {%if entry_exists == True %}
+        <div class="alert alert-danger col-4" role="alert">
+            An entry for <a href="{%url 'wikiEntry' title%}">{{title}}</a> already exists.
+          </div>
+        {%endif%}
+        <button type="submit" class="btn btn-primary">Save</button>
+
+    </form>
+
+
+    
+
+
+
+{% endblock %}
